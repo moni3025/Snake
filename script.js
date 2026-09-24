@@ -2,10 +2,13 @@ const frontPage =document.getElementById("front-page");
 const gamePage=document.getElementById("game-page");
 const startButton =document.getElementById("start-btn");
 const gameOverPage = document.getElementById("last-page");
+const  finalScore = document.getElementById("final-score");
+const restartButton = document.getElementById("restart-btn");
 let score = 0;
+let level = 1;
 
-startButton.addEventListener("click", startGame)
-
+startButton.addEventListener("click", startGame);
+restartButton.addEventListener("click", restartGame);
 
 const snake =[
     {x:5, y:5},
@@ -14,8 +17,8 @@ const snake =[
 ]
 
 const gameBoard =document.getElementById("game-board");
-const rows = 20;
-const columns =20;
+const rows =40;
+const columns =40;
 
 for (let row=0; row<rows; row++){
     for(let column =0; column<columns; column++){
@@ -57,8 +60,25 @@ const foodIndex = food.y *columns + food.x
 
 function gameOver(){
     clearInterval(gameLoop);
-
+    finalScore.textContent="Score :" + score;
     gameOverPage.style.display ="block";
+}
+
+function restartGame(){
+    score = 0;
+    scoreDisplay.textContent = "Score : 0";
+
+    snake.length = 0;
+
+    snake.push(
+        {x:5, y:5},
+        {x:4, y:5},
+        {x:3, y:5}
+    );
+    gameOverPage.style.display ="none";
+    gamePage.style.display ="block";
+    placeFood();
+    startGame();
 }
 
 function startGame(){
@@ -83,17 +103,21 @@ function startGame(){
             clearFood();
             growSnake();
             score++;
+            if(score % 5 === 0){
+                level++;
+            }
             scoreDisplay.textContent ="Score :" +score;
             placeFood();
         }
         drawSnake();
         drawFood();
-    },200)
+    },200);
 }
 
 
 function moveSnake() {
     for(let i=snake.length - 1; i>0; i--){
+        console.log(direction);
         snake[i].x =snake[i-1].x;
         snake[i].y =snake[i-1].y;
     }
@@ -115,9 +139,12 @@ function moveSnake() {
 
 
 let direction ="right";
-document.addEventListener("keydown",changeDirection)
+document.addEventListener("keydown",changeDirection);
 
 function changeDirection(event){
+    event.preventDefault();
+
+    console.log(event.key);
     if(event.key==="ArrowUp"){
         direction ="up";
     }
@@ -181,7 +208,7 @@ function clearFood(){
 }
 
 const scoreDisplay =document.getElementById("score");
-
+const levelDisplay = document.getElementById("level");
 
 function checkSelfCollision(){
     const head = snake[0];
