@@ -1,0 +1,123 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+}
+
+/* Common section styling */
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------- START PAGE ---------------- */
+
+#front-page {
+    background: #111;
+}
+
+.Dashboard {
+    text-align: center;
+    padding: 40px;
+}
+
+.Dashboard h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.Dashboard h3 {
+    margin: 15px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* ---------------- GAME PAGE ---------------- */
+
+#game-page {
+    display: none;
+}
+
+.Gamescreen {
+    text-align: center;
+}
+
+.Gamescreen h1 {
+    margin: 10px;
+}
+
+/* Game board */
+.game_board {
+    width: 500px;
+    height: 500px;
+    margin-top: 20px;
+    border: 3px solid white;
+    background: #222;
+}
+
+/* ---------------- GAME OVER PAGE ---------------- */
+
+#last-page {
+    display: none;
+}
+
+.over {
+    text-align: center;
+}
+
+.over h1 {
+    font-size: 45px;
+    margin-bottom: 25px;
+}
+
+.over h3 {
+    margin: 15px;
+}
+
+.food{
+    background-color: red;
+}
+
+.snake{
+    background-color: green;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(20, 20px);
+    grid-template-rows: repeat(20, 20px);
+    width: 400px;
+    height: 400px;
+}
+
+#game-board div {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #333;
+    box-sizing: border-box;
+}
+
+.snake {
+    background-color: green;
+}
+
+.food {
+    background-color: red;
+}
